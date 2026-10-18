@@ -40,35 +40,22 @@ def divisible(numbers, divisor):
             result.append(number)
     return result
 
+# test:
 
-def common(x, y):
-    """
-    Returns the intersection of two multisets represented as lists x and y.
-
-    Args:
-        x (list): First multiset.
-        y (list): Second multiset.
-
-    Returns:
-        list: A list containing the common elements of x and y, including multiplicity.
-
-    Pre-conditions:
-        - x and y are lists.
-
-    Post-conditions:
-        - Returns a new list with the multiset intersection of x and y without modifying the original lists.
-
-    Raises:
-        TypeError: If x or y is not a list.
-    """
-
-    if not isinstance(x, list) or not isinstance(y, list):
-        raise TypeError("Both x and y must be lists.")
-
-    intersections = []
-    y_copy = list(y)
-    for elements in x:
-        if elements in y_copy:
-            intersections.append(elements)
-            y_copy.remove(elements)
-    return intersections
+def test_divisible():
+    assert divisible([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2) == [2, 4, 6, 8, 10]
+    assert divisible([], 3) == []
+    assert divisible([-20, -1, 0, 5], 5) == [-20, 0, 5]
+    try:
+        divisible([1, 5, 10], 0)
+        assert False
+    except ValueError:
+        pass
+    try:
+        divisible(["xd", 2], 2)
+        assert False
+    except TypeError:
+        pass
+    print("All tests for divisible() passed!")
+    
+    test_divisible()
